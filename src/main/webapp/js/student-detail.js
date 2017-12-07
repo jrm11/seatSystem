@@ -78,20 +78,20 @@ $(()=> {
             if (flag) {
                 // 游览器宽度大于1200
                 if (clientWidth > 1200) {
-                    this.showClassRoom(200, 300, 10, 15)
+                    this.showClassRoom(200, 300, 14, 21)
                 } else if (clientWidth > 767 && clientWidth < 1199) {
-                    this.showClassRoom(180, 270, 10, 15);
+                    this.showClassRoom(180, 270, 14, 21);
                 } else if (clientWidth < 767) {
-                    this.showClassRoom(120, 180, 10, 15);
+                    this.showClassRoom(120, 180, 14, 21);
                 }
                 flag = false;
             } else {
                 if (clientWidth > 1200) {
-                    this.showClassRoom(300, 200, 15, 10)
+                    this.showClassRoom(300, 200, 21, 14)
                 } else if (clientWidth > 767 && clientWidth < 1199) {
-                    this.showClassRoom(270, 180, 15, 10);
+                    this.showClassRoom(270, 180, 21, 14);
                 } else if (clientWidth < 767) {
-                    this.showClassRoom(180, 120, 15, 10);
+                    this.showClassRoom(180, 120, 21, 14);
                 }
                 flag = true;
             }
