@@ -43,7 +43,14 @@ $(()=> {
             $("#js-seat-left").html(html1);
             // 如果座位表为左2右3 第2 7 12...等差数列的 li 右边距 li:nth-of-type(5n-3)
             // 如果座位表为左3右2 第3 8 13...等差数列的 li 右边距 li:nth-of-type(5n-2)
-            $("li:nth-of-type(5n-2)").addClass('mR120');
+            let clientW = ($(window).width());
+            if(clientW>1200){
+                $("li:nth-of-type(5n-2)").addClass('mR120');
+            }else if(clientW>768 && clientW<1200){
+                $("li:nth-of-type(5n-2)").addClass('mR60');
+            }else{
+                $("li:nth-of-type(5n-2)").addClass('mR5');
+            }
         },
         // 更改教室类型
         changeClassRoom() {
@@ -57,10 +64,10 @@ $(()=> {
 
     };
     // 监听游览器窗口缩放后重新刷新页面防止页面失真
-    // $(window).resize(function () {
-    //     // obj.changeClassRoom();
-    //     location.reload();
-    // });
+    $(window).resize(function () {
+        // obj.changeClassRoom();
+        location.reload();
+    });
 
     // 座位点击事件
 

@@ -86,6 +86,12 @@
 .mR120 {
   margin-right: 120px !important; }
 
+.mR60 {
+  margin-right: 100px !important; }
+
+.mR5 {
+  margin-right: 5px !important; }
+
 .edit {
   transition: .07s;
   border: none !important;
