@@ -5,18 +5,6 @@ $(()=> {
     "use strict";
     let flag = true;
     let obj = {
-        // 随机生成座位表
-        randomStudentInfo() {
-            const addStudentInfo = $("#js-seat-list");
-            let str = '';
-            // 生成随机数
-            let random = Math.floor(Math.random() * 20 + 10);
-
-            for (let i = 0; i < random; i++) {
-                str += `<li><div class='student-item'></div><p class='student-name'>小明${i + 1}</p></li>`;
-            }
-            addStudentInfo.html(str);
-        },
         // 编辑学员信息
         editSeatInfo() {
             let flag = true;
@@ -45,68 +33,37 @@ $(()=> {
                 flag = !flag;
             });
         },
-        /*
-         *  @params  leftWidth:     左侧宽度
-         *  @params  rightWidth:   右侧宽度
-         *  @params  leftNum:       左侧数量
-         *  @params   rightNum:    右侧侧数量
-         * */
-        // 显示教室座位
-        showClassRoom(leftWidth, rightWidth, leftNum, rightNum){
-            let html1 = "",
-                html2 = "";
-            // 动态生成左侧座位数
-            for (let i = 0; i < leftNum; i++) {
-                html1 += ` <li><div class='student-item'></div><p class='student-name'>小明${i + 1}</p></li>`;
-            }
-            $("#js-seat-left").width(leftWidth);
-            $("#js-seat-left").html(html1);
-            // 动态生成右侧座位数
-            for (let i = 0; i < rightNum; i++) {
-                html2 += ` <li><div class='student-item'></div><p class='student-name'>小明${i + 1}</p></li>`;
-            }
-            $("#js-seat-right").width(rightWidth);
-            $("#js-seat-right").html(html2);
 
-            // 添加生成座位动画
-            // $("#js-seat-list li").addClass("animated fadeIn ");
+        // 显示教室座位
+        showClassRoom(leftNum, item){
+            let html1 = "";
+            for (let i = 0; i < leftNum; i++) {
+                html1 += ` <li><div class='student-item'></div><p class='student-name'></p></li>`;
+            }
+            $("#js-seat-left").html(html1);
+            // 如果座位表为左2右3 第2 7 12...等差数列的 li 右边距 li:nth-of-type(5n-3)
+            // 如果座位表为左3右2 第3 8 13...等差数列的 li 右边距 li:nth-of-type(5n-2)
+            $("li:nth-of-type(5n-2)").addClass('mR120');
         },
         // 更改教室类型
         changeClassRoom() {
             // 获取游览器宽
-            let clientWidth = $(window).width();
             if (flag) {
                 // 游览器宽度大于1200
-                if (clientWidth > 1200) {
-                    this.showClassRoom(200, 300, 14, 21)
-                } else if (clientWidth > 767 && clientWidth < 1199) {
-                    this.showClassRoom(180, 270, 14, 21);
-                } else if (clientWidth < 767) {
-                    this.showClassRoom(120, 180, 14, 21);
-                }
+                this.showClassRoom(35, 0)
                 flag = false;
-            } else {
-                if (clientWidth > 1200) {
-                    this.showClassRoom(300, 200, 21, 14)
-                } else if (clientWidth > 767 && clientWidth < 1199) {
-                    this.showClassRoom(270, 180, 21, 14);
-                } else if (clientWidth < 767) {
-                    this.showClassRoom(180, 120, 21, 14);
-                }
-                flag = true;
             }
-        },
+        }
 
     };
     // 监听游览器窗口缩放后重新刷新页面防止页面失真
-    $(window).resize(function () {
-        // obj.changeClassRoom();
-        location.reload();
-    });
+    // $(window).resize(function () {
+    //     // obj.changeClassRoom();
+    //     location.reload();
+    // });
 
     // 座位点击事件
 
-    // obj.randomStudentInfo();
     obj.editSeatInfo();
     obj.changeClassRoom();
     let seatNumV = $(".js-seat-num");//座位号

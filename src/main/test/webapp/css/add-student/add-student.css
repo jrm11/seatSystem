@@ -83,6 +83,9 @@
 .dropdown-menu {
   min-width: 100px; }
 
+.mR120 {
+  margin-right: 120px !important; }
+
 .edit {
   transition: .07s;
   border: none !important;
